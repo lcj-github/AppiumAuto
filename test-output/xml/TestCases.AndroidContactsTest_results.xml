@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="通讯录添加流程"
+           tests="2"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="32.682">
+  <properties />
+  
+  
+            <testcase name="case1" time="9.737" classname="TestCases.AndroidContactsTest" />
+                <testcase name="case2" time="22.945" classname="TestCases.AndroidContactsTest" />
+      
+</testsuite>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<unit id="ContactAdd" desc="通讯录添加流程的测试场景点">
+
+    <case 
+        id="case1" 
+        name="验证在Android系统中，首次启动添加通讯录，点击addContact，可以正常进入添加界面">
+        <step action="wait-forced" value="6000" desc="强制等待5秒"/>
+        <step action="android-click" locator="resource-id=com.example.android.contactmanager:id/addContactButton" desc="点击add Contact按钮"/>    
+        <step action="android-check" locator="text=Target Account" expect="Target Account" message="进入添加界面失败(实际结果和预期结果不一致)" caseid="Case1" desc="检查在Android系统中，首次启动通讯功能，点击添加按钮后，可以正常进入添加界面"/>
+    </case>
+
+  	<case 
+         id="case2" 
+        name="验证能正确添加通讯录信息">
+        <step action="android-input" locator="class=android.widget.EditText[0]" value="Some Name" desc="输入正确的用户名"/>
+        <step action="android-input" locator="class=android.widget.EditText[2]" value="Some@example.com" desc="输入正确邮箱"/>
+        <step action="android-click" locator="text=Save" desc="点击保存按钮"/>
+        <step action="android-check" locator="resource-id=android:id/message" expect="很抱歉，“Contact Manager”已停止运行。"  message="添加失败(实际结果和预期结果不一致)" caseid="Case2" desc="检查能正确添加通讯录信息"/>    
+    </case>
+    
+</unit>
