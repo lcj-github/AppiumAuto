@@ -79,6 +79,30 @@ public class AndroidXmlParseService {
 		//设置全局隐性等待时间
 		driver.manage().timeouts().implicitlyWait(80000, TimeUnit.MILLISECONDS);
 	}
+	
+	public static void appiumConfigureCaida() throws Exception {
+		//指定APK安装路径:
+		File apk = new File(ConfigUtil.getProperty("apk.path", Constants.CONFIG_COMMON), "Caidazq_T2.40.apk");
+		 //创建Capabilities
+        DesiredCapabilities capabilities = new DesiredCapabilities();        
+        capabilities.setCapability("platformName", "Android");
+        //设置模拟器的系统版本
+        capabilities.setCapability("platformVersion", "4.4.2");
+        //设置要调试的模拟器的名字
+        capabilities.setCapability("deviceName","Android Emulator");
+        //设置app的路径         
+        capabilities.setCapability("app", apk.getAbsolutePath());
+        System.out.println("apk path  ==== "+apk.getAbsolutePath());
+        //设置app的包名
+        /*capabilities.setCapability("appPackage", "com.caidazq.dzhNew");
+        //设置app的启动activity
+        capabilities.setCapability("appActivity", ".com.android.ui.businessoutlets.OutletsActivity");*/
+        //启动driver
+        driver = new AndroidDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		
+		//设置全局隐性等待时间
+		driver.manage().timeouts().implicitlyWait(80000, TimeUnit.MILLISECONDS);
+	}
 
 	public static void AppiumTest() throws Exception { 
 //		Runtime.getRuntime().exec("adb -s MKJNW18129003635 uninstall com.giveu.corder"); 
@@ -201,7 +225,7 @@ public class AndroidXmlParseService {
 //			appiumServer =new AppiumService();
 //			appiumServer.StartAppium();
 			System.out.println("初始化Android设备,耐心等待App启动ing..."); 
-			appiumConfigure();
+			appiumConfigureCaida();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

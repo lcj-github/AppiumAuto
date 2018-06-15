@@ -2,6 +2,7 @@ package com.lcj.deom.handler;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.lcj.deom.base.TestStep;
@@ -35,7 +36,17 @@ public class InputActionHandler {
 		step.getAndroidDriver().manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
 		WebElement e = AppiumUtil.getElement(step);
 		e.clear();
-		e.sendKeys(AppiumUtil.parseStringHasEls(step.getValue()));	
+		String inputVal = step.getValue();
+		//对验证码的处理
+		if (inputVal.equalsIgnoreCase("com.caidazq.dzhNew:id/tv_yzm"))
+		{
+			String valGet = step.getAndroidDriver().findElement(By.id(inputVal)).getText();			
+			e.sendKeys(valGet);					
+		}
+		else{
+			e.sendKeys(AppiumUtil.parseStringHasEls(inputVal));	
+		}
+		
 	}
 	
 	/**

@@ -120,8 +120,8 @@ public class AppiumUtil {
 	 * 
 	 * 当前只localmap中只考虑三种类型的值：
 	 *<h1>String</h1>
-	 *<h1>List&lt;String></h1>
-	 *<h1>List&lt;Map&lt;String,Object>></h1></br>
+	 *<h1>List<String></h1>
+	 *<h1>List<Map<String,Object>></h1></br>
 	 *
 	 * @author    102051
 	 * @date      2017年8月2日 下午2:43:54
