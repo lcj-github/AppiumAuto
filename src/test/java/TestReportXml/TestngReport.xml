@@ -7,6 +7,7 @@
                     <include name="case1" />
                     <include name="case2" />
                     <include name="case3" />
+                    <include name="case4" />
                 </methods>
         </classes>
     </test>

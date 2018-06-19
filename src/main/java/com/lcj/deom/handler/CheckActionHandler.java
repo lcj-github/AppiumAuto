@@ -49,6 +49,17 @@ public class CheckActionHandler {
 		checkEqualsAndroid(Actual,Expected,FailHint,CaseID);
 	}
 	
+	public void androidCheckblur(TestStep step) throws Exception{
+		String Actual = AppiumUtil.getElement(step).getText();
+		String Expected = AppiumUtil.parseStringHasEls(step.getExpect());
+		String FailHint = step.getMessage();
+		String CaseID = step.getCaseid();
+		System.out.println("『正常测试』开始执行: " + "<" +step.getDesc() + ">");
+		checkEqualsBlurAndroid(Actual,Expected,FailHint,CaseID);
+	}
+	
+	
+	
 	public void webChecklist(TestStep step) throws NumberFormatException, Exception{
 		System.out.println("『正常测试』开始执行: " + "<" +step.getDesc() + ">");
 		String conditon = step.getDetails().get("condition");
@@ -146,6 +157,17 @@ public class CheckActionHandler {
 	public void checkEqualsAndroid(String Actual,String Expected,String FailHint,String CaseID){
 		try {
 			Assert.assertEquals(Actual,Expected,FailHint);
+			Thread.sleep(500);
+        }
+ 	    catch (Error | InterruptedException e)  {
+ 	    	AndroidXmlParseService.screenShot(CaseID);
+ 	    	Assert.fail(FailHint +"  "+"Actual 【"+ Actual +"】"+"  "+"but found 【"+ Expected +"】");
+ 	    }
+	}
+	
+	public void checkEqualsBlurAndroid(String Actual,String Expected,String FailHint,String CaseID){
+		try {
+			Assert.assertTrue(Actual.contains(Expected), FailHint);
 			Thread.sleep(500);
         }
  	    catch (Error | InterruptedException e)  {

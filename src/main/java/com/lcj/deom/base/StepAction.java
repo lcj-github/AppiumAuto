@@ -50,6 +50,7 @@ public enum StepAction {
     WEB_CHECKLIST("web-checklist", "检查Web本地缓存的list中的元素", CheckActionHandler.class),
     ANDROID_CHECK("android-check", "检查Android界面元素值", CheckActionHandler.class),
     ANDROID_CHECKLIST("android-checklist", "检查Android本地缓存的list中的元素", CheckActionHandler.class),
+    ANDROID_CHECKBLUR("android-checkblur", "检查Android界面元素模糊匹配", CheckActionHandler.class),
     
     WAIT_FORCED("wait-forced", "强制等待", WaitActionHandler.class),
     WEBWAIT_IMPLICIT("web-implicit", "Web端隐式等待", WaitActionHandler.class),

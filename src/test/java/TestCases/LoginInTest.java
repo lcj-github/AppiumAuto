@@ -24,8 +24,6 @@ public class LoginInTest {
 		runService.runCase("case1");
 		runService.TestReportRemarks("打开app后，弹出公告，提示您已成功登录test");
 	}
-	
-	
 
 	@Test
 	public void case2() throws Exception{
@@ -37,6 +35,12 @@ public class LoginInTest {
 	public void case3() throws Exception{
 		runService.runCase("case3");
 		runService.TestReportRemarks("输入账号密码，正常登录交易系统");
+	}
+	
+	@Test
+	public void case4() throws Exception{
+		runService.runCase("case4");
+		runService.TestReportRemarks("普通交易-买入");
 	}
 
 	

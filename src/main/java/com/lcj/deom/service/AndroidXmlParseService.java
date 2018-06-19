@@ -158,20 +158,23 @@ public class AndroidXmlParseService {
 		int t = 1;
 		String AppointDir = System.getProperty("user.dir")+"\\TestOutput\\ExtentReport\\BugScreenshot\\";
 		String picture = AppointDir + ScreenshotName + ".png";
-
-		File file = new File(AppointDir);
-		File[] fs = file.listFiles();
-		File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
 		// 指定图片数量，过多删除
 		try {
+			
+			File fileP = new File(AppointDir);
+			if(!fileP.exists()&& !fileP.isDirectory()){
+				fileP.createNewFile();
+			}
+			File[] fs = fileP.listFiles();
+			File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			
 			if (fs.length >= 300) {
 				for (File f : fs) {
 					if (f.getName().contains("png"))
 						f.delete();
 				}
 			}
-
+			
 			FileUtils.copyFile(screenShot, new File(picture));
 			++t;
 		} catch (IOException e) {
