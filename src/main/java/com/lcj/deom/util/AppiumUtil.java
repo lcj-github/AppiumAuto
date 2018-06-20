@@ -11,13 +11,8 @@ import org.openqa.selenium.WebElement;
 import com.lcj.deom.base.TestStep;
 
 /**
- * <br>公用函数功能</br>
- *
- * @author  102051
- * @email   mengxiw@dafycredit.com
- * @date    2017年7月27日 下午4:07:18
- * @version 1.0
- * @since   1.0
+ * <br>公用函数功能</br> *
+
  */
 public class AppiumUtil {
 	/**

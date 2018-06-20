@@ -15,11 +15,6 @@ import com.lcj.deom.util.SeleniumUtil;
 /**
  * <br>检查操作<br/>
  *
- * @author  102051
- * @email   mengxiw@dafycredit.com
- * @date    2017年7月26日 上午10:27:26
- * @version 1.0
- * @since   1.0
  */
 public class CheckActionHandler {
 	

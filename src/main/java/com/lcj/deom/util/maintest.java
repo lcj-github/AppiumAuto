@@ -5,15 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <br>TODO(描述该类的作用)</br>
- *
- * @author  102051
- * @email   email
- * @date    2017年7月28日 上午11:03:31
- * @version 1.0
- * @since   1.0
- */
+ 
 public class maintest {
 	public static Map<String,Object> localmap = AppiumUtil.localmap;
 	

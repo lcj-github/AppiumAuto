@@ -80,7 +80,7 @@ public class AndroidXmlParseService {
 		driver.manage().timeouts().implicitlyWait(80000, TimeUnit.MILLISECONDS);
 	}
 	
-	public static void appiumConfigureCaida() throws Exception {
+	public static void appiumConfigureCaida() throws Exception { 
 		//指定APK安装路径:
 		File apk = new File(ConfigUtil.getProperty("apk.path", Constants.CONFIG_COMMON), "Caidazq_T2.40.apk");
 		 //创建Capabilities
