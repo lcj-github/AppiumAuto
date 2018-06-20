@@ -33,6 +33,6 @@ public class AndroidContactsTest {
 	
 	@AfterTest
 	public void TearDown(){
-		runService.closeApp();
+		runService.closeApp(); 
 	}
 }

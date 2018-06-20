@@ -100,7 +100,7 @@ public class AndroidXmlParseService {
         //启动driver
         driver = new AndroidDriver<WebElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 		
-		//设置全局隐性等待时间
+		//设置全局隐性等待时间 
 		driver.manage().timeouts().implicitlyWait(80000, TimeUnit.MILLISECONDS);
 	}
 

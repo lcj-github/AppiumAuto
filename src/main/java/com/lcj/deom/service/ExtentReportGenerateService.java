@@ -72,7 +72,7 @@ public class ExtentReportGenerateService implements IReporter {
                         resultNode = suiteTest.createNode(r.getTestContext().getName());
                     }
                 }else{
-                    resultNode = suiteTest;
+                    resultNode = suiteTest; 
                 }
                 if(resultNode != null){
                     resultNode.getModel().setName(suite.getName()+" : "+r.getTestContext().getName());

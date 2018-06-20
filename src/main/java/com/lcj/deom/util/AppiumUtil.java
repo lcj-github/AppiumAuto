@@ -176,25 +176,4 @@ public class AppiumUtil {
 	}
 }
 
-/*if(o == null){
-	 throw new Exception("键"+key+"对应的值不存在！");
-}else if(o instanceof Map){
-	 
-}else if(o instanceof List){//如果获取的值为List类型
-	 if(index == -1){
-		 if(i == s.length-1) return o;
-		 else throw new Exception("当前数据是一个列表，请提供索引");
-	 }
-	Object m = ((List) o).get(index);
-	if(m instanceof Map){
-		 map = (Map)m;
-		 if(i == s.length-1) return m;
-	 }else{
-		 if(i != s.length-1) throw new Exception("键及索引"+st+"对应的值类型不是Map,"+s[i=1]+"无效！");
-		 return m;
-	 }
-}else{//如果获取的值为其他类型
-	 if(index > 0) throw new Exception("键"+key+"对应的值类型不是List，索引值无效！");
-	 if(i != s.length-1) throw new Exception("键"+key+"对应的值类型不是Map,"+s[i=1]+"无效！");
-	 return o;
-}*/
+ 
