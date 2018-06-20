@@ -10,8 +10,8 @@
     <case id="case2" name="验证点击交易按钮，进入交易登录界面">
         <step action="wait-forced" value="5000" desc="强制等待5秒"/>
         <step action="android-click" locator="resource-id=com.caidazq.dzhNew:id/bottom_menu_button5" desc="点击交易按钮"/> 
-        <step action="android-input" locator="class=android.widget.EditText[0]" value="" desc="输入正确的手机号"/>
-        <step action="android-input" locator="class=android.widget.EditText[1]" value="" desc="输入正确的验证码"/>
+        <step action="android-input" locator="class=android.widget.EditText[0]" value="11111111111" desc="输入正确的手机号"/>
+        <step action="android-input" locator="class=android.widget.EditText[1]" value="111111" desc="输入正确的验证码"/>
         <step action="android-click" locator="resource-id=com.caidazq.dzhNew:id/ml_btn" desc="点击验证按钮"/> 
         <step action="wait-forced" value="3000" desc="强制等待3秒"/>  
         <step action="android-check" locator="resource-id=com.caidazq.dzhNew:id/trade_title" expect="交易登录" message="进入交易界面失败(实际结果和预期结果不一致)" caseid="Case2" desc="检查点击交易按钮，进入交易登录界面"/>
@@ -19,8 +19,8 @@
 
 
    	<case id="case3" name="验证能正确登录交易系统">
-        <step action="android-input" locator="resource-id=com.caidazq.dzhNew:id/et_account" value="" desc="输入正确的用户名"/>
-        <step action="android-input" locator="resource-id=com.caidazq.dzhNew:id/et_passwords" value="" desc="输入正确密码"/>
+        <step action="android-input" locator="resource-id=com.caidazq.dzhNew:id/et_account" value="80000003" desc="输入正确的用户名"/>
+        <step action="android-input" locator="resource-id=com.caidazq.dzhNew:id/et_passwords" value="123456" desc="输入正确密码"/>
         <step action="android-input" locator="resource-id=com.caidazq.dzhNew:id/et_yzm" value="com.caidazq.dzhNew:id/tv_yzm" desc="输入正确验证码"/>
         <step action="android-click" locator="resource-id=com.caidazq.dzhNew:id/btn_login" desc="点击登录按钮"/>
         <step action="wait-forced" value="3000" desc="强制等待3秒"/>  

@@ -16,7 +16,7 @@ public class AndroidContactsTest {
 	private void stup() throws Exception{
 		TestUnit testunit = AndroidXmlParseService.parse("src/test/java/TestCaseXml/AndroidContactsTest.xml");
 		runService = new RunUnitService(testunit);
-		System.out.println("-----------------------------------【微信登录流程的测试场景点】-----------------------------------");
+		System.out.println("-----------------------------------【通讯录流程的测试场景点】-----------------------------------");
 	}
 	
 	@Test

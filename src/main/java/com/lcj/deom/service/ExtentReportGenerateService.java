@@ -1,42 +1,43 @@
 package com.lcj.deom.service;
 
+import java.io.File;
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+import org.testng.IReporter;
+import org.testng.IResultMap;
+import org.testng.ISuite;
+import org.testng.ISuiteResult;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.Reporter;
+import org.testng.xml.XmlSuite;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.ResourceCDN;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.model.TestAttribute;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-import org.testng.*;
-import org.testng.xml.XmlSuite;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-
-/**
- * <br>用于在测试结束后生成测试报告</br>
- *
- * @author  chenwx
- * @date    2017年3月24日
- * @version 1.0
- * @since   1.0
- */
+ 
 public class ExtentReportGenerateService implements IReporter {
-	/**
-	 * 生成的路径以及文件名
-	 */
-	private static final String OUTPUT_FOLDER = System.getProperty("user.dir")+"\\TestOutput\\ExtentReport\\";
-    /**
-     * 报告的名称
-     */
+	//生成的路径以及文件名
+    private static final String OUTPUT_FOLDER = "test-output/";
     private static final String FILE_NAME = "index.html";
 
     private ExtentReports extent;
 
+    @Override
     public void generateReport(List<XmlSuite>  xmlSuites, List<ISuite> suites, String outputDirectory) {
-        init(suites);
+        init();
         boolean createSuiteNode = false;
         if(suites.size()>1){
             createSuiteNode=true;
@@ -74,10 +75,7 @@ public class ExtentReportGenerateService implements IReporter {
                     resultNode = suiteTest;
                 }
                 if(resultNode != null){
-                	//TestsName模块名称
-//                	resultNode.getModel().setName(suite.getName());
-                	resultNode.getModel().setName(r.getTestContext().getName());
-//                    resultNode.getModel().setName(suite.getName()+" : "+r.getTestContext().getName());
+                    resultNode.getModel().setName(suite.getName()+" : "+r.getTestContext().getName());
                     if(resultNode.getModel().hasCategory()){
                         resultNode.assignCategory(r.getTestContext().getName());
                     }else{
@@ -107,36 +105,34 @@ public class ExtentReportGenerateService implements IReporter {
                     suiteTest.getModel().setStatus(Status.FAIL);
                 }
             }
+
         }
-        
-        //TestRunner Logs备注信息输出
-        for (String s : Reporter.getOutput()) {
-            extent.setTestRunnerOutput(s);
-        }
+ 
 
         extent.flush();
     }
 
-    private void init(List<ISuite> suites) {
+    private void init() {
         //文件夹不存在的话进行创建
         File reportDir= new File(OUTPUT_FOLDER);
         if(!reportDir.exists()&& !reportDir .isDirectory()){
             reportDir.mkdir();
         }
-        for (ISuite suite : suites) {
-//        String a =suite.getName();
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(OUTPUT_FOLDER + FILE_NAME);
-        htmlReporter.config().setDocumentTitle("即Contact ManagerAPP测试报告");
-        htmlReporter.config().setReportName(suite.getName());
+        htmlReporter.config().setDocumentTitle("Android自动化测试报告");
+        htmlReporter.config().setReportName("Android自动化测试报告");
         htmlReporter.config().setChartVisibilityOnOpen(true);
-        htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
+        htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);         
         htmlReporter.config().setTheme(Theme.STANDARD);
-        htmlReporter.config().setEncoding("utf-8");
-        htmlReporter.config().setCSS(".node.level-1  ul{ display:none;} .node.level-1.active ul{display:block;}");
+        //htmlReporter.config().setEncoding("uft-8");
+        htmlReporter.config().setCSS(
+                ".node.level-1  ul{ display:none;} .node.level-1.active ul{display:block;}  .card-panel.environment  th:first-child{ width:30%;}");
+        // 移除按键监听事件
+        htmlReporter.config().setJS("$(window).off(\"keydown\");");
+        htmlReporter.config().setResourceCDN(ResourceCDN.EXTENTREPORTS);
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
         extent.setReportUsesManualConfiguration(true);
-        }
     }
 
     private void buildTestNodes(ExtentTest extenttest,IResultMap tests, Status status) {
@@ -155,20 +151,19 @@ public class ExtentReportGenerateService implements IReporter {
         if (tests.size() > 0) {
             //调整用例排序，按时间排序
             Set<ITestResult> treeSet = new TreeSet<ITestResult>(new Comparator<ITestResult>() {
+                @Override
                 public int compare(ITestResult o1, ITestResult o2) {
                     return o1.getStartMillis()<o2.getStartMillis()?-1:1;
                 }
             });
             treeSet.addAll(tests.getAllResults());
             for (ITestResult result : treeSet) {
-                result.getParameters();
+                Object[] parameters = result.getParameters();
                 String name="";
-                //如果有参数，则使用参数的toString组合代替报告中的Casename
-//                for(Object param:parameters){
-//                    name+=param.toString();
-//                }
-                
-                //当Case的名称大于50位，则用...忽略
+                //如果有参数，则使用参数的toString组合代替报告中的name
+                for(Object param:parameters){
+                    name+=param.toString();
+                }
                 if(name.length()>0){
                     if(name.length()>50){
                         name= name.substring(0,49)+"...";
@@ -186,22 +181,13 @@ public class ExtentReportGenerateService implements IReporter {
                 //test = extent.createTest(result.getMethod().getMethodName());
                 for (String group : result.getMethod().getGroups())
                     test.assignCategory(group);
-                 
+
                 List<String> outputList = Reporter.getOutput(result);
                 for(String output:outputList){
                     //将用例的log输出报告中
                     test.debug(output);
                 }
                 if (result.getThrowable() != null) {
-//                	String fileName = result.getMethod().getMethodName() + ".png";
-                	try {
-                		String CurrentDir = System.getProperty("user.dir");
-                 	    String AppointDir ="\\TestOutput\\ExtentReport\\BugScreenshot\\";
-            	        test.addScreenCaptureFromPath(CurrentDir+AppointDir+result.getMethod().getMethodName()+".png");
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-//                	test.log(status, test.addScreenCaptureFromPath("../img/"+result.getMethod().getMethodName()+".png"));
                     test.log(status, result.getThrowable());
                 }
                 else {

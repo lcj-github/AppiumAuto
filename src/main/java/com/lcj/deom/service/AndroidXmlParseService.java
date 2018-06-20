@@ -228,7 +228,7 @@ public class AndroidXmlParseService {
 //			appiumServer =new AppiumService();
 //			appiumServer.StartAppium();
 			System.out.println("初始化Android设备,耐心等待App启动ing..."); 
-			appiumConfigureCaida();
+			appiumConfigure();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

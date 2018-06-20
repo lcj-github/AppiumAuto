@@ -4,7 +4,7 @@
         <suite-file path="TestngReport.xml"></suite-file>
     </suite-files>
     <listeners>
-        <listener class-name="com.lcj.deom.service.ExtentReportGenerateService"></listener>
+        <listener class-name="com.lcj.deom.service.ExtentTestNGIReporterListener"></listener>
     </listeners> 
     <!-- C:\Windows\System32\drivers\etc
         151.139.237.11    cdn.rawgit.com -->
