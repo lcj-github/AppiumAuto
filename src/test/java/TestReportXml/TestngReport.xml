@@ -13,7 +13,7 @@
         </classes>
     </test>
 -->  
-     <test name="通讯录流程" junit="false" verbose="3" parallel="false" thread-count="5" annotations="javadoc" time-out="60000" enabled="true" skipfailedinvocationcounts="true" preserve-order="true" allow-return-values="true">
+     <test name="通讯录流程">
         <classes>
             <class name="TestCases.AndroidContactsTest"/>
                 <methods>
